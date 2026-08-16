@@ -1,0 +1,1380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta
+    name="description"
+    content="Common Wealth Cards — sports cards, TCG, Pokémon, graded cards, trade nights, and collectible shows."
+  />
+  <title>Common Wealth Cards</title>
+  <link rel="canonical" href="https://commonwealthcards.com/" />
+  <meta property="og:url" content="https://commonwealthcards.com/" />
+  <meta property="og:site_name" content="Common Wealth Cards" />
+
+
+  <style>
+    :root {
+      --black: #020409;
+      --black-soft: #080d16;
+      --navy: #07182f;
+      --blue: #087cff;
+      --blue-bright: #28a8ff;
+      --blue-deep: #0047b8;
+      --silver: #d8e2ee;
+      --silver-dark: #7f91a8;
+      --white: #ffffff;
+      --muted: #a9b6c8;
+      --panel: #0c1422;
+      --line: rgba(133, 181, 255, 0.2);
+      --shadow: 0 24px 60px rgba(0, 80, 255, 0.22);
+      --radius: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background:
+        radial-gradient(circle at 85% 8%, rgba(0, 119, 255, 0.12), transparent 22%),
+        radial-gradient(circle at 5% 45%, rgba(0, 82, 196, 0.1), transparent 25%),
+        var(--black);
+      color: var(--white);
+      line-height: 1.55;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    button {
+      cursor: pointer;
+    }
+
+    .container {
+      width: min(1180px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .announcement {
+      padding: 10px 16px;
+      text-align: center;
+      background: linear-gradient(90deg, #0052c8, #19a0ff, #0052c8);
+      color: white;
+      font-weight: 900;
+      letter-spacing: 0.5px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      border-bottom: 1px solid var(--line);
+      background: rgba(2, 4, 9, 0.94);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav {
+      min-height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand img {
+      width: 88px;
+      height: 54px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 8px;
+      border: 1px solid rgba(72, 153, 255, 0.4);
+      box-shadow: 0 0 24px rgba(20, 124, 255, 0.25);
+    }
+
+    .brand-copy {
+      display: grid;
+      line-height: 1.05;
+    }
+
+    .brand-copy strong {
+      letter-spacing: 1px;
+    }
+
+    .brand-copy small {
+      color: var(--blue-bright);
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-top: 5px;
+      font-size: 0.66rem;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-weight: 800;
+      font-size: 0.92rem;
+    }
+
+    .nav-links a {
+      color: var(--silver);
+    }
+
+    .nav-links a:hover {
+      color: var(--blue-bright);
+    }
+
+    .menu-button {
+      display: none;
+      border: 0;
+      background: transparent;
+      color: white;
+      font-size: 1.6rem;
+    }
+
+    .hero {
+      padding: 54px 0 90px;
+      overflow: hidden;
+    }
+
+    .hero-logo {
+      width: min(100%, 980px);
+      margin: 0 auto 42px;
+      border-radius: 24px;
+      border: 1px solid rgba(70, 145, 255, 0.35);
+      box-shadow:
+        0 0 0 1px rgba(255, 255, 255, 0.04),
+        0 35px 90px rgba(0, 89, 255, 0.3);
+    }
+
+    .hero-content {
+      max-width: 830px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .eyebrow {
+      color: var(--blue-bright);
+      font-size: 0.78rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 2.4px;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 7vw, 5.3rem);
+      line-height: 0.98;
+      letter-spacing: -3px;
+      margin-bottom: 22px;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(180deg, #ffffff, #8ed1ff 52%, #1688ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      color: var(--muted);
+      font-size: 1.13rem;
+      max-width: 720px;
+      margin: 0 auto 30px;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+    }
+
+    .primary-button,
+    .secondary-button {
+      min-height: 50px;
+      padding: 0 22px;
+      border-radius: 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      transition: 0.2s ease;
+    }
+
+    .primary-button {
+      color: white;
+      background: linear-gradient(135deg, var(--blue-deep), var(--blue-bright));
+      box-shadow: 0 12px 30px rgba(0, 119, 255, 0.28);
+    }
+
+    .primary-button:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.08);
+    }
+
+    .secondary-button {
+      border: 1px solid rgba(133, 181, 255, 0.35);
+      color: var(--silver);
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .secondary-button:hover {
+      border-color: var(--blue-bright);
+      color: white;
+    }
+
+    .stat-strip {
+      padding: 0 0 75px;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: linear-gradient(145deg, rgba(12, 20, 34, 0.96), rgba(4, 10, 19, 0.98));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+    }
+
+    .stat {
+      padding: 24px;
+      text-align: center;
+      border-right: 1px solid var(--line);
+    }
+
+    .stat:last-child {
+      border-right: 0;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.25rem;
+      color: white;
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    section {
+      padding: 85px 0;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 34px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      letter-spacing: -1.5px;
+    }
+
+    .section-heading p {
+      color: var(--muted);
+      max-width: 590px;
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .feature-card {
+      min-height: 320px;
+      border-radius: var(--radius);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.24);
+    }
+
+    .feature-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(transparent 28%, rgba(0, 0, 0, 0.94)),
+        radial-gradient(circle at 80% 16%, rgba(0, 131, 255, 0.45), transparent 26%);
+    }
+
+    .feature-card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .feature-card h3 {
+      font-size: 1.8rem;
+      margin-bottom: 8px;
+    }
+
+    .feature-card p {
+      color: #c6d1df;
+      margin-bottom: 18px;
+    }
+
+    .pokemon-card {
+      background: linear-gradient(145deg, #102a55, #090f19);
+    }
+
+    .sports-card {
+      background: linear-gradient(145deg, #092044, #10151f);
+    }
+
+    .graded-card {
+      background: linear-gradient(145deg, #181b24, #06172d);
+    }
+
+    .event-section {
+      background:
+        linear-gradient(rgba(2, 4, 9, 0.88), rgba(2, 4, 9, 0.94)),
+        radial-gradient(circle at 20% 40%, rgba(0, 123, 255, 0.18), transparent 30%);
+    }
+
+    .event-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 28px;
+    }
+
+    .event-feature,
+    .event-list {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, rgba(15, 26, 45, 0.95), rgba(5, 10, 18, 0.98));
+      box-shadow: var(--shadow);
+    }
+
+    .event-feature {
+      padding: 36px;
+      min-height: 390px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .event-feature::after {
+      content: "TRADE";
+      position: absolute;
+      right: -18px;
+      bottom: -30px;
+      font-size: 7rem;
+      font-weight: 900;
+      color: rgba(49, 143, 255, 0.08);
+      letter-spacing: -8px;
+    }
+
+    .event-date {
+      width: 92px;
+      height: 92px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      background: linear-gradient(145deg, var(--blue), var(--blue-deep));
+      box-shadow: 0 14px 35px rgba(0, 102, 255, 0.3);
+      font-weight: 900;
+      line-height: 1.05;
+    }
+
+    .event-date strong {
+      display: block;
+      font-size: 2rem;
+    }
+
+    .event-feature h3 {
+      font-size: clamp(2.1rem, 4vw, 3.4rem);
+      margin: 24px 0 10px;
+    }
+
+    .event-feature p {
+      color: var(--muted);
+      max-width: 570px;
+    }
+
+    .event-details {
+      display: grid;
+      gap: 10px;
+      margin-top: 24px;
+      color: var(--silver);
+      font-weight: 700;
+    }
+
+    .event-list {
+      padding: 28px;
+    }
+
+    .event-list h3 {
+      font-size: 1.6rem;
+      margin-bottom: 18px;
+    }
+
+    .show-item {
+      padding: 18px 0;
+      border-top: 1px solid var(--line);
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: 16px;
+    }
+
+    .show-item:first-of-type {
+      border-top: 0;
+    }
+
+    .show-date {
+      color: var(--blue-bright);
+      font-weight: 900;
+      text-transform: uppercase;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+    }
+
+    .show-item h4 {
+      margin-bottom: 4px;
+    }
+
+    .show-item p {
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .bio-grid {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .bio-logo {
+      border-radius: 24px;
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+
+    .bio-copy h2 {
+      font-size: clamp(2.3rem, 5vw, 4rem);
+      line-height: 1;
+      margin-bottom: 22px;
+    }
+
+    .bio-copy p {
+      color: var(--muted);
+      margin-bottom: 16px;
+    }
+
+    .newsletter {
+      padding-top: 0;
+    }
+
+    .newsletter-box {
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 42px;
+      background: linear-gradient(135deg, #06142a, #0d315f);
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      gap: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .newsletter-box p {
+      color: #c4d0df;
+    }
+
+    .newsletter-form {
+      display: flex;
+      min-width: min(100%, 440px);
+    }
+
+    .newsletter-form input {
+      flex: 1;
+      min-width: 0;
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-right: 0;
+      border-radius: 11px 0 0 11px;
+      padding: 14px;
+      outline: none;
+      background: rgba(255, 255, 255, 0.08);
+      color: white;
+    }
+
+    .newsletter-form input::placeholder {
+      color: #a8b6c7;
+    }
+
+    .newsletter-form button {
+      border: 0;
+      border-radius: 0 11px 11px 0;
+      padding: 14px 19px;
+      color: white;
+      background: linear-gradient(135deg, var(--blue-deep), var(--blue-bright));
+      font-weight: 900;
+    }
+
+    footer {
+      border-top: 1px solid var(--line);
+      background: #010307;
+      padding: 54px 0 24px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.4fr repeat(3, 1fr);
+      gap: 35px;
+      margin-bottom: 42px;
+    }
+
+    .footer-logo {
+      width: 230px;
+      border-radius: 12px;
+      margin-bottom: 16px;
+    }
+
+    .footer-grid p,
+    .footer-grid a {
+      color: var(--muted);
+      display: block;
+      margin: 8px 0;
+      font-size: 0.92rem;
+    }
+
+    .footer-grid a:hover {
+      color: var(--blue-bright);
+    }
+
+    .footer-grid h4 {
+      color: white;
+      margin-bottom: 14px;
+    }
+
+    .copyright {
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      color: #738198;
+      font-size: 0.86rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 28px;
+      z-index: 3000;
+      transform: translate(-50%, 25px);
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.25s;
+      background: #0c2548;
+      border: 1px solid rgba(79, 161, 255, 0.4);
+      color: white;
+      border-radius: 999px;
+      padding: 13px 19px;
+      box-shadow: var(--shadow);
+      font-weight: 800;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
+    @media (max-width: 950px) {
+      .cards-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .event-grid,
+      .bio-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stat-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .nav-links {
+        position: absolute;
+        top: 80px;
+        left: 0;
+        right: 0;
+        padding: 20px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        background: var(--black-soft);
+        border-bottom: 1px solid var(--line);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .menu-button {
+        display: block;
+      }
+
+      .brand-copy {
+        display: none;
+      }
+
+      .hero {
+        padding-top: 30px;
+      }
+
+      .section-heading {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .newsletter-box {
+        grid-template-columns: 1fr;
+      }
+
+      .newsletter-form {
+        width: 100%;
+        min-width: 0;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .container {
+        width: min(100% - 22px, 1180px);
+      }
+
+      section {
+        padding: 65px 0;
+      }
+
+      .cards-grid,
+      .stat-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .stat {
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .stat:last-child {
+        border-bottom: 0;
+      }
+
+      .newsletter-box {
+        padding: 28px 20px;
+      }
+
+      .newsletter-form {
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .newsletter-form input,
+      .newsletter-form button {
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        border-radius: 10px;
+      }
+
+      .copyright {
+        flex-direction: column;
+      }
+    }
+  
+    /* Android and iPhone browser optimization */
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+      scroll-padding-top: 92px;
+    }
+
+    body {
+      min-width: 320px;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      padding-left: env(safe-area-inset-left);
+      padding-right: env(safe-area-inset-right);
+    }
+
+    header {
+      padding-top: env(safe-area-inset-top);
+    }
+
+    button,
+    a,
+    input {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button,
+    .primary-button,
+    .secondary-button,
+    .nav-links a {
+      min-height: 44px;
+      touch-action: manipulation;
+    }
+
+    input {
+      font-size: 16px;
+    }
+
+    @supports (-webkit-touch-callout: none) {
+      body {
+        min-height: -webkit-fill-available;
+      }
+    }
+
+    @media (hover: none) and (pointer: coarse) {
+      .primary-button:hover,
+      .secondary-button:hover,
+      .nav-links a:hover {
+        transform: none;
+        filter: none;
+      }
+
+      .primary-button:active,
+      .secondary-button:active {
+        transform: scale(0.98);
+      }
+    }
+
+    @media (max-width: 760px) {
+      .announcement {
+        font-size: 0.78rem;
+        line-height: 1.35;
+        padding: 9px max(14px, env(safe-area-inset-right))
+                 9px max(14px, env(safe-area-inset-left));
+      }
+
+      .nav {
+        min-height: 70px;
+      }
+
+      .brand img {
+        width: 72px;
+        height: 46px;
+      }
+
+      .menu-button {
+        width: 48px;
+        height: 48px;
+        display: grid;
+        place-items: center;
+        border-radius: 12px;
+      }
+
+      .nav-links {
+        top: calc(70px + env(safe-area-inset-top));
+        max-height: calc(100dvh - 70px - env(safe-area-inset-top));
+        overflow-y: auto;
+        padding: 18px max(18px, env(safe-area-inset-right))
+                 calc(22px + env(safe-area-inset-bottom))
+                 max(18px, env(safe-area-inset-left));
+      }
+
+      .nav-links a {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding: 12px 4px;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .hero {
+        padding: 26px 0 64px;
+      }
+
+      .hero-logo {
+        width: 100%;
+        margin-bottom: 30px;
+        border-radius: 16px;
+      }
+
+      .hero h1 {
+        font-size: clamp(2.45rem, 12vw, 4.2rem);
+        letter-spacing: -2px;
+      }
+
+      .hero p {
+        font-size: 1rem;
+      }
+
+      .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .primary-button,
+      .secondary-button {
+        width: 100%;
+        min-height: 52px;
+      }
+
+      .stat-strip {
+        padding-bottom: 56px;
+      }
+
+      .stat {
+        padding: 20px 16px;
+      }
+
+      section {
+        padding: 64px 0;
+      }
+
+      .section-heading {
+        margin-bottom: 26px;
+      }
+
+      .section-heading h2 {
+        font-size: clamp(2rem, 9vw, 3rem);
+        line-height: 1.05;
+      }
+
+      .cards-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .feature-card {
+        min-height: 290px;
+        padding: 24px;
+      }
+
+      .event-feature,
+      .event-list {
+        padding: 24px;
+      }
+
+      .event-feature {
+        min-height: 0;
+      }
+
+      .event-feature::after {
+        font-size: 4rem;
+        right: -8px;
+      }
+
+      .show-item {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .bio-grid {
+        gap: 30px;
+      }
+
+      .bio-copy h2 {
+        font-size: clamp(2.2rem, 10vw, 3.4rem);
+      }
+
+      .newsletter-box {
+        padding: 26px 20px;
+      }
+
+      .newsletter-form {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .newsletter-form input,
+      .newsletter-form button {
+        width: 100%;
+        min-height: 50px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.16);
+      }
+
+      footer {
+        padding-bottom: calc(24px + env(safe-area-inset-bottom));
+      }
+
+      .footer-logo {
+        width: min(100%, 280px);
+      }
+    }
+
+    @media (max-width: 390px) {
+      .container {
+        width: min(100% - 18px, 1180px);
+      }
+
+      .hero h1 {
+        font-size: 2.35rem;
+      }
+
+      .event-date {
+        width: 82px;
+        height: 82px;
+      }
+
+      .feature-card h3 {
+        font-size: 1.55rem;
+      }
+    }
+
+    @media (orientation: landscape) and (max-height: 520px) {
+      .nav-links {
+        max-height: calc(100dvh - 64px);
+      }
+
+      .hero {
+        padding-top: 22px;
+      }
+
+      .hero-logo {
+        max-height: 54vh;
+        object-fit: contain;
+      }
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="announcement">
+    Trade Nights • Card Shows • Sports • TCG • Collectibles
+  </div>
+
+  <header>
+    <div class="container nav">
+      <a class="brand" href="#home">
+        <img src="common-wealth-logo.jpg" alt="Common Wealth Cards logo" />
+        <span class="brand-copy">
+          <strong>COMMON WEALTH CARDS</strong>
+          <small>Sports • TCG • Collectibles</small>
+        </span>
+      </a>
+
+      <nav class="nav-links" id="navLinks">
+        <a href="#collections">Collections</a>
+        <a href="#trade-night">Trade Night</a>
+        <a href="#shows">Upcoming Shows</a>
+        <a href="#bio">Bio</a>
+        <a href="#contact">Contact</a>
+      </nav>
+
+      <button
+        class="menu-button"
+        id="menuButton"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-expanded="false"
+      >
+        ☰
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container">
+        <img
+          class="hero-logo"
+          src="common-wealth-logo.jpg"
+          alt="Common Wealth Cards — Sports, TCG, Collectibles"
+        />
+
+        <div class="hero-content">
+          <p class="eyebrow">SPORTS • TCG • GRADED CARDS • COLLECTIBLES</p>
+
+          <h1>
+            Build a collection with
+            <span>Common Wealth.</span>
+          </h1>
+
+          <p>
+            Discover Pokémon, sports cards, graded slabs, sealed products,
+            trade nights, and collectible shows built for the hobby community.
+          </p>
+
+          <div class="hero-actions">
+            <a class="primary-button" href="#collections">Explore Collections</a>
+            <a class="secondary-button" href="#trade-night">View Trade Night</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="stat-strip">
+      <div class="container stat-grid">
+        <div class="stat">
+          <strong>Pokémon & TCG</strong>
+          <span>Modern, vintage, sealed, and graded</span>
+        </div>
+
+        <div class="stat">
+          <strong>Sports Cards</strong>
+          <span>Rookies, legends, autos, and parallels</span>
+        </div>
+
+        <div class="stat">
+          <strong>Trade Nights</strong>
+          <span>Meet collectors and make deals</span>
+        </div>
+
+        <div class="stat">
+          <strong>Card Shows</strong>
+          <span>Find us at upcoming events</span>
+        </div>
+      </div>
+    </div>
+
+    <section id="collections">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">WHAT WE COLLECT</p>
+            <h2>Cards for every kind of collector.</h2>
+          </div>
+
+          <p>
+            Common Wealth Cards focuses on Pokémon, sports cards, graded slabs,
+            sealed products, and unique collectibles for new and experienced collectors.
+          </p>
+        </div>
+
+        <div class="cards-grid">
+          <article class="feature-card pokemon-card">
+            <p class="eyebrow">POKÉMON & TCG</p>
+            <h3>Pokémon Cards</h3>
+            <p>
+              Vintage favorites, modern hits, illustration rares, booster products,
+              Japanese cards, and graded Pokémon collectibles.
+            </p>
+            <a class="primary-button" href="#contact">Ask About Pokémon</a>
+          </article>
+
+          <article class="feature-card sports-card">
+            <p class="eyebrow">SPORTS</p>
+            <h3>Sports Cards</h3>
+            <p>
+              Baseball, basketball, football, hockey, soccer, rookies,
+              autographs, memorabilia cards, numbered parallels, and legends.
+            </p>
+            <a class="primary-button" href="#contact">Ask About Sports Cards</a>
+          </article>
+
+          <article class="feature-card graded-card">
+            <p class="eyebrow">PSA • BGS • CGC • SGC</p>
+            <h3>Graded Collectibles</h3>
+            <p>
+              Authenticated slabs, premium grades, investment pieces, and
+              display-ready cards across sports and TCG.
+            </p>
+            <a class="primary-button" href="#contact">Ask About Graded Cards</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="event-section" id="trade-night">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">COMMUNITY EVENT</p>
+            <h2>Common Wealth Trade Night</h2>
+          </div>
+
+          <p>
+            Bring cards to trade, meet other collectors, talk about the hobby,
+            and discover new pieces for your collection.
+          </p>
+        </div>
+
+        <div class="event-grid">
+          <article class="event-feature">
+            <div>
+              <div class="event-date">
+                <span>NEXT</span>
+                <strong>TBD</strong>
+              </div>
+
+              <h3>Trade, connect, and collect.</h3>
+
+              <p>
+                Our trade nights welcome Pokémon and sports-card collectors.
+                Bring your binders, slabs, singles, and sealed products.
+                All ages and experience levels are welcome.
+              </p>
+
+              <div class="event-details">
+                <span>📍 Location: To be announced</span>
+                <span>🕒 Time: To be announced</span>
+                <span>🎟 Admission: To be announced</span>
+                <span>🤝 Family-friendly collector event</span>
+              </div>
+            </div>
+
+            <a class="primary-button" href="#contact">Get Trade Night Updates</a>
+          </article>
+
+          <aside class="event-list" id="shows">
+            <p class="eyebrow">EVENT CALENDAR</p>
+            <h3>Upcoming Shows</h3>
+
+            <div class="show-item">
+              <div class="show-date">DATE TBD</div>
+              <div>
+                <h4>Common Wealth Trade Night</h4>
+                <p>Location and event details will be announced soon.</p>
+              </div>
+            </div>
+
+            <div class="show-item">
+              <div class="show-date">COMING SOON</div>
+              <div>
+                <h4>Local Sports Card Show</h4>
+                <p>Add your confirmed show name, date, city, booth number, and hours here.</p>
+              </div>
+            </div>
+
+            <div class="show-item">
+              <div class="show-date">COMING SOON</div>
+              <div>
+                <h4>Pokémon & TCG Event</h4>
+                <p>Add your next Pokémon, TCG, or collectible event here.</p>
+              </div>
+            </div>
+
+            <div class="show-item">
+              <div class="show-date">VENDOR INFO</div>
+              <div>
+                <h4>Find Our Booth</h4>
+                <p>Show location, table number, inventory preview, and contact details can go here.</p>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="bio">
+      <div class="container bio-grid">
+        <img
+          class="bio-logo"
+          src="common-wealth-logo.jpg"
+          alt="Common Wealth Cards logo"
+        />
+
+        <div class="bio-copy">
+          <p class="eyebrow">OUR BIO</p>
+          <h2>Built around the hobby and its community.</h2>
+
+          <p>
+           Commonwealth Cards was built on a simple idea: create the kind of card shop we would want to spend time in ourselves. 
+           We're two lifelong collectors brought together by a shared passion for the hobby and a belief that collecting is about 
+           so much more than the cards themselves. Whether your passion is Sports cards, Pokémon, Disney, Star Wars, Magic: 
+           The Gathering, or other trading card games, we want Commonwealth Cards to be a place where everyone feels welcome.
+          </p>
+
+          <p>Neal has been buying, selling, and collecting cards professionally since 2022. After successfully operating a 
+            card shop in Las Vegas, he made the decision to return to the East Coast and partner with Brad to build something 
+            special here in Northern Virginia. For Neal, it's both an exciting new chapter and a return home.
+          </p>
+
+          <p>Brad has called this area home for nearly 20 years while building a successful government contracting business.
+             His deep roots in the community, combined with his lifelong love of collecting, make him the perfect partner in 
+             bringing Commonwealth Cards to life.
+          </p>
+
+          <p>Together, we bring different backgrounds but the same vision: a shop built on honesty, knowledge, and genuine relationships. 
+            We believe every collector deserves to be treated with respect—whether you're buying your first pack, chasing a grail card, 
+            submitting cards for grading, trading with friends, or adding the next centerpiece to your collection.
+          </p>
+
+          <p>
+            Our goal is to create more than just a retail store. We want Commonwealth Cards to become a community hub where collectors can gather, 
+            learn, trade, rip packs, attend events, and share their passion with others. From weekly trade nights and family-friendly events to helping 
+            collectors complete sets or find that one elusive card, we're committed to making every visit worthwhile.
+          </p>
+          <p>
+           Thank you for being part of our journey. We can't wait to welcome you into the Commonwealth Cards community.
+          </p>
+
+          <a class="primary-button" href="#contact">Connect With Us</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="newsletter" id="contact">
+      <div class="container newsletter-box">
+        <div>
+          <h2>Get trade-night and show updates.</h2>
+          <p>
+            Join the Common Wealth Cards list for event dates, upcoming shows,
+            new inventory, and collector announcements.
+          </p>
+        </div>
+
+        <form class="newsletter-form" id="newsletterForm">
+          <input
+            id="newsletterEmail"
+            type="email"
+            maxlength="254"
+            placeholder="Enter your email address"
+            autocomplete="email"
+            required
+          />
+          <button type="submit">Join Updates</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <img
+          class="footer-logo"
+          src="common-wealth-logo.jpg"
+          alt="Common Wealth Cards"
+        />
+
+        <p>
+          Sports cards, Pokémon, TCG, graded slabs, trade nights,
+          card shows, and collectibles.
+        </p>
+      </div>
+
+      <div>
+        <h4>Explore</h4>
+        <a href="#collections">Collections</a>
+        <a href="#trade-night">Trade Night</a>
+        <a href="#shows">Upcoming Shows</a>
+      </div>
+
+      <div>
+        <h4>Common Wealth</h4>
+        <a href="#bio">Bio</a>
+        <a href="#contact">Contact</a>
+        <a href="#contact">Event Updates</a>
+      </div>
+
+      <div>
+        <h4>Contact</h4>
+        <p>hello@commonwealthcards.com</p>
+        <p>Instagram: @commonwealthcards</p>
+        <p>Sports • TCG • Collectibles</p>
+      </div>
+    </div>
+
+    <div class="container copyright">
+      <span>© <span id="currentYear"></span> Common Wealth Cards.</span>
+      <span>Trade. Collect. Connect.</span>
+    </div>
+  </footer>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    const menuButton = document.getElementById("menuButton");
+    const navLinks = document.getElementById("navLinks");
+    const newsletterForm = document.getElementById("newsletterForm");
+    const toast = document.getElementById("toast");
+
+    let toastTimer;
+
+    menuButton.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    navLinks.querySelectorAll("a").forEach((link) => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuButton.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+
+      clearTimeout(toastTimer);
+
+      toastTimer = setTimeout(() => {
+        toast.classList.remove("show");
+      }, 2600);
+    }
+
+    newsletterForm.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const emailInput = document.getElementById("newsletterEmail");
+      const email = emailInput.value.trim();
+
+      if (!email || !emailInput.checkValidity()) {
+        showToast("Enter a valid email address.");
+        return;
+      }
+
+      const subscribers = JSON.parse(
+        localStorage.getItem("commonWealthEventSubscribers") || "[]"
+      );
+
+      if (!subscribers.includes(email)) {
+        subscribers.push(email);
+
+        localStorage.setItem(
+          "commonWealthEventSubscribers",
+          JSON.stringify(subscribers)
+        );
+      }
+
+      newsletterForm.reset();
+      showToast("You joined the Common Wealth updates list.");
+    });
+
+    document.getElementById("currentYear").textContent =
+      new Date().getFullYear();
+  </script>
+</body>
+</html>
