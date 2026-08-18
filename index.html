@@ -501,55 +501,6 @@
       margin-bottom: 16px;
     }
 
-    .newsletter {
-      padding-top: 0;
-    }
-
-    .newsletter-box {
-      border: 1px solid var(--line);
-      border-radius: 24px;
-      padding: 42px;
-      background: linear-gradient(135deg, #06142a, #0d315f);
-      display: grid;
-      grid-template-columns: 1fr auto;
-      align-items: center;
-      gap: 30px;
-      box-shadow: var(--shadow);
-    }
-
-    .newsletter-box p {
-      color: #c4d0df;
-    }
-
-    .newsletter-form {
-      display: flex;
-      min-width: min(100%, 440px);
-    }
-
-    .newsletter-form input {
-      flex: 1;
-      min-width: 0;
-      border: 1px solid rgba(255, 255, 255, 0.16);
-      border-right: 0;
-      border-radius: 11px 0 0 11px;
-      padding: 14px;
-      outline: none;
-      background: rgba(255, 255, 255, 0.08);
-      color: white;
-    }
-
-    .newsletter-form input::placeholder {
-      color: #a8b6c7;
-    }
-
-    .newsletter-form button {
-      border: 0;
-      border-radius: 0 11px 11px 0;
-      padding: 14px 19px;
-      color: white;
-      background: linear-gradient(135deg, var(--blue-deep), var(--blue-bright));
-      font-weight: 900;
-    }
 
     footer {
       border-top: 1px solid var(--line);
@@ -674,14 +625,6 @@
         align-items: flex-start;
       }
 
-      .newsletter-box {
-        grid-template-columns: 1fr;
-      }
-
-      .newsletter-form {
-        width: 100%;
-        min-width: 0;
-      }
     }
 
     @media (max-width: 560px) {
@@ -708,20 +651,6 @@
         border-bottom: 0;
       }
 
-      .newsletter-box {
-        padding: 28px 20px;
-      }
-
-      .newsletter-form {
-        flex-direction: column;
-        gap: 10px;
-      }
-
-      .newsletter-form input,
-      .newsletter-form button {
-        border: 1px solid rgba(255, 255, 255, 0.16);
-        border-radius: 10px;
-      }
 
       .copyright {
         flex-direction: column;
@@ -914,23 +843,6 @@
         font-size: clamp(2.2rem, 10vw, 3.4rem);
       }
 
-      .newsletter-box {
-        padding: 26px 20px;
-      }
-
-      .newsletter-form {
-        display: grid;
-        grid-template-columns: 1fr;
-        gap: 10px;
-      }
-
-      .newsletter-form input,
-      .newsletter-form button {
-        width: 100%;
-        min-height: 50px;
-        border-radius: 10px;
-        border: 1px solid rgba(255, 255, 255, 0.16);
-      }
 
       footer {
         padding-bottom: calc(24px + env(safe-area-inset-bottom));
@@ -1244,27 +1156,43 @@
       </div>
     </section>
 
-    <section class="newsletter" id="contact">
-      <div class="container newsletter-box">
-        <div>
-          <h2>Get trade-night and show updates.</h2>
+    <section id="contact">
+      <div class="container">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">CONTACT US</p>
+            <h2>Connect With Common Wealth Cards</h2>
+          </div>
+
           <p>
-            Join the Common Wealth Cards list for event dates, upcoming shows,
-            new inventory, and collector announcements.
+            Follow us for trade nights, upcoming shows, new inventory,
+            and Common Wealth Cards announcements.
           </p>
         </div>
 
-        <form class="newsletter-form" id="newsletterForm">
-          <input
-            id="newsletterEmail"
-            type="email"
-            maxlength="254"
-            placeholder="Enter your email address"
-            autocomplete="email"
-            required
-          />
-          <button type="submit">Join Updates</button>
-        </form>
+        <div class="event-feature">
+          <div>
+            <h3>Follow Us</h3>
+            <p>
+              Stay connected with Common Wealth Cards on Instagram.
+            </p>
+
+            <div class="event-details">
+              <span>📱 Instagram: @commonwealthcards_702</span>
+              <span>📍 Stafford, Virginia</span>
+              <span>🏆 Sports • Pokémon • TCG • Collectibles</span>
+            </div>
+          </div>
+
+          <a
+            class="primary-button"
+            href="https://www.instagram.com/commonwealthcards_702/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Visit Our Instagram
+          </a>
+        </div>
       </div>
     </section>
   </main>
@@ -1295,7 +1223,7 @@
         <h4>Common Wealth</h4>
         <a href="#bio">Bio</a>
         <a href="#contact">Contact</a>
-        <a href="#contact">Event Updates</a>
+        <a href="#contact">Contact Us</a>
       </div>
 
       <div>
@@ -1311,15 +1239,9 @@
     </div>
   </footer>
 
-  <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
   <script>
     const menuButton = document.getElementById("menuButton");
     const navLinks = document.getElementById("navLinks");
-    const newsletterForm = document.getElementById("newsletterForm");
-    const toast = document.getElementById("toast");
-
-    let toastTimer;
 
     menuButton.addEventListener("click", () => {
       const isOpen = navLinks.classList.toggle("open");
@@ -1331,45 +1253,6 @@
         navLinks.classList.remove("open");
         menuButton.setAttribute("aria-expanded", "false");
       });
-    });
-
-    function showToast(message) {
-      toast.textContent = message;
-      toast.classList.add("show");
-
-      clearTimeout(toastTimer);
-
-      toastTimer = setTimeout(() => {
-        toast.classList.remove("show");
-      }, 2600);
-    }
-
-    newsletterForm.addEventListener("submit", (event) => {
-      event.preventDefault();
-
-      const emailInput = document.getElementById("newsletterEmail");
-      const email = emailInput.value.trim();
-
-      if (!email || !emailInput.checkValidity()) {
-        showToast("Enter a valid email address.");
-        return;
-      }
-
-      const subscribers = JSON.parse(
-        localStorage.getItem("commonWealthEventSubscribers") || "[]"
-      );
-
-      if (!subscribers.includes(email)) {
-        subscribers.push(email);
-
-        localStorage.setItem(
-          "commonWealthEventSubscribers",
-          JSON.stringify(subscribers)
-        );
-      }
-
-      newsletterForm.reset();
-      showToast("You joined the Common Wealth updates list.");
     });
 
     document.getElementById("currentYear").textContent =
